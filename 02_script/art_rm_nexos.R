@@ -1,5 +1,6 @@
 # 1. Cargar paquetes ----
 require(tidyverse)
+require(ggplot2)
 require(readxl)
 require(ggthemes)
 require(lubridate)
@@ -11,7 +12,7 @@ dir <- "~/GitHub/Graficando_Covid19_Mx"
 setwd(dir)
 
 inp <- "/01_datos/"
-out <- "/03_gráficas/art_rm/"
+out <- "/03_gráficas/"
 fiuffi <- "Elaboración propia con datos de la Secretaría de Salud\n@guzmart_ | @regi_medina | @lolo7no"
 
 # Función para reconocer acentos
@@ -203,6 +204,7 @@ ggplot(data_fecha_acumulado,
         axis.text.x = element_text(size = 12, angle = 90, vjust = 0.5),
         axis.title.y = element_text(size = 15),
         axis.text.y = element_text(size = 15))
+
 ggsave(filename = paste0(dir, out, 
                   str_replace_all(str_sub(max(data_fecha_acumulado$fecha_corte), end = -1), "-", "_"), 
                   "_01_acumulados.png"), width = 15, height = 10, dpi = 100)
@@ -282,6 +284,7 @@ ggsave(filename = paste0(
 
 
 fiuf <- "Número de casos acumulados en distintos países\ndesde el primer caso confirmado en el país"
+
 ggplot(data_world, 
             aes(x = Día,
                 y = n,
